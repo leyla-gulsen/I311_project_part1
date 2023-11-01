@@ -5,16 +5,15 @@
  * IMPORTS
  */
 
-// import java.io.*;
-// import java.util.ArrayList;
-// import java.util.List;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * MAIN CLASS
  */
 
-/*
- *public class FileIO {
+public class FileIO {
 
     // defining file were data will be stored
     private static final String FILE_NAME = "thneed_data.txt"; // example file name
@@ -76,4 +75,3 @@
         }
     }
 }
- */
