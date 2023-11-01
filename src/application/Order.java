@@ -1,5 +1,6 @@
 package application;
 
+import java.util.ArrayList;
 
 public class Order {
 	private static int nextOrderID = 1;
@@ -9,10 +10,13 @@ public class Order {
 	private String customer = "First Last";
 	private String dateOrdered = "Month Day Year";
 	private String dateFilled = "Month Day Year";
+	//Add ArrayList to Controller
+	//public ArrayList<Order> thneedOrders;
 
 // No-arg constructor
 public Order() {
 }
+
 public Order(int orderNumber, String size, String color, String customer, String dateOrdered, String dateFilled) {
 	this.orderNumber = nextOrderID ++;
 	this.size = size;
@@ -52,6 +56,14 @@ public String getDateOrdered() {
 //access method
 public String getDateFilled() {
 	return dateFilled;
+}
+
+public ArrayList<Order> getOrders(){
+	return thneedOrders;
+}
+
+public void addOrder(Order order) {
+	thneedOrders.add(order);
 }
 
 
