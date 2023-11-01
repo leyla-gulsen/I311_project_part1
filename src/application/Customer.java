@@ -1,59 +1,62 @@
 package application;
 
-import java.util.UUID;
+import java.util.ArrayList;
 
-public class Customer extends Person {
-	private UUID id = UUID.randomUUID();
-	private String name = "";
-	private String address = "";
-	private String phone = "";
+public class Customer {
+    private static int nextCustomerId = 1;
+
+    private int customerId;
+	private String name;
+	private String address;
+	private String phone;
+    private ArrayList<Order> orders;
+
 	
-	public Customer(UUID id, String name, String address, String phone) {
-		super(name);
-		this.id = id;
-		this.address = address;
-		this.phone = phone;
+	public Customer(String name, String address, String phone) {
+		 this.customerId = nextCustomerId++;
+	     this.name = name;
+	     this.address = address;
+	     this.phone = phone;
+	     this.orders = new ArrayList<>();
+	}
+	
+	public int getCustomerId() {
+		return customerId;
 	}
 	
 	public String getName() {
 		return name;
 	}
 	
-	public UUID getID() {
-		return id;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	public String getAddress() {
 		return address;
 	}
 	
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
 	public String getPhone() {
 		return phone;
 	}
 	
-	@Override
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
+	public ArrayList<Order> getOrders(){
+		return orders;
+	}
+	
+	public void addOrder(Order order) {
+		orders.add(order);
+	}
+	
 	public String toString() {
-		return this.getName();
-	}
-}
-
-class Person {
-	private String name = "";
-	
-	
-	public Person(String name) {
-		this.name = name;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String newName) {
-		if (!newName.equals("")) {
-			name = newName;
-		}
-		else
-			System.out.println("Can't change name. Empty names aren't allowed");
+		return "ID: " + customerId + ", Name: " + name + ", Address: " + address + ", Phone Number: " + phone + "Previous Orders: " + orders;
 	}
 }
