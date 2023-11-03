@@ -9,7 +9,7 @@ public class Customer {
 	private String name;
 	private String address;
 	private String phone;
-    private ArrayList<Order> orders;
+    public ArrayList<Order> previousOrders;
 
 	
 	public Customer(String name, String address, String phone) {
@@ -17,7 +17,7 @@ public class Customer {
 	     this.name = name;
 	     this.address = address;
 	     this.phone = phone;
-	     this.orders = new ArrayList<>();
+	     this.previousOrders = new ArrayList<>();
 	}
 	
 	public int getCustomerId() {
@@ -49,11 +49,11 @@ public class Customer {
 	}
 	
 	public ArrayList<Order> getOrders(){
-		return orders;
+		return previousOrders;
 	}
 	
-	public void addOrder(Order order) {
-		orders.add(order);
+	public void addOrder(Order previousOrder) {
+		previousOrders.add(previousOrder);
 	}
 	
 	public String toString() {

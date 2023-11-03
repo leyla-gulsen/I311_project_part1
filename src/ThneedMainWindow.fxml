@@ -13,8 +13,7 @@
             <Font name="System Bold" size="48.0" />
          </font>
       </Label>
-      <Button fx:id="newOrderButton" layoutX="107.0" layoutY="402.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="92.0" text="New Order" textFill="#eb419c" />
-      <Button fx:id="loadButton" layoutX="222.0" layoutY="402.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="92.0" text="Load File" textFill="#eb419c" />
+      <Button fx:id="newOrderButton" layoutX="179.0" layoutY="402.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="92.0" text="New Order" textFill="#eb419c" />
       <TextField fx:id="listField" layoutX="22.0" layoutY="140.0" prefHeight="240.0" prefWidth="367.0" />
       <Label layoutX="148.0" layoutY="84.0" prefHeight="44.0" prefWidth="115.0" text="List of Orders" textFill="#eb419c">
          <font>
@@ -33,8 +32,8 @@
          </font>
       </Label>
       <TextField fx:id="currentField" layoutX="403.0" layoutY="140.0" prefHeight="240.0" prefWidth="367.0" />
-      <Button fx:id="custInfoButton" layoutX="462.0" layoutY="402.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="92.0" text="Customer Info" textFill="#eb419c" />
-      <Button fx:id="saveButton" layoutX="344.0" layoutY="402.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="92.0" text="Save" textFill="#eb419c" />
-      <Button fx:id="newCustButton" layoutX="577.0" layoutY="402.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="104.0" text="New Customer" textFill="#eb419c" />
+      <Button fx:id="custInfoButton" layoutX="403.0" layoutY="402.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="92.0" text="Customer Info" textFill="#eb419c" />
+      <Button fx:id="saveButton" layoutX="509.0" layoutY="402.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="92.0" text="Save" textFill="#eb419c" />
+      <Button fx:id="newCustButton" layoutX="285.0" layoutY="402.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="104.0" text="New Customer" textFill="#eb419c" />
    </children>
 </AnchorPane>
