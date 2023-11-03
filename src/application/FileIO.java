@@ -28,6 +28,7 @@ public class FileIO {
             while ((line = reader.readLine()) != null) {
                 // read through the line and create customer objects
                 // add customer object to customer list
+            	// String[] parts = line.split()
                 
             }
         } catch (FileNotFoundException e) {
