@@ -28,7 +28,17 @@ public class FileIO {
             while ((line = reader.readLine()) != null) {
                 // read through the line and create customer objects
                 // add customer object to customer list
-            	// String[] parts = line.split()
+            	
+            	String[] customerData = line.split(","); // this is assuming data is comma separated, hard to tell as of right now
+            	
+            	int customerId = Integer.parseInt(customerData[0].substring(customerData[0].indexOf(": ") + 2));
+                String name = customerData[1].substring(customerData[1].indexOf(": ") + 2);
+                String address = customerData[2].substring(customerData[2].indexOf(": ") + 2);
+                String phone = customerData[3].substring(customerData[3].indexOf(": ") + 2);
+
+                Customer customer = new Customer(name, address, phone);
+                customer.setCustomerId(customerId);
+                customers.add(customer);
                 
             }
         } catch (FileNotFoundException e) {
