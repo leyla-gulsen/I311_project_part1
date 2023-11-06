@@ -59,4 +59,8 @@ public class Customer {
 	public String toString() {
 		return "ID: " + customerId + ", Name: " + name + ", Address: " + address + ", Phone Number: " + phone + "Previous Orders: " + previousOrders;
 	}
+	
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
 }

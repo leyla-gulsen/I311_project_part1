@@ -52,7 +52,7 @@ public class FileIO {
     }
     
     
-    //method to load customoer data from the file
+    //method to load customer data from the file
     public static List<Customer> loadCustomers() {
     	List<Customer> customers = new ArrayList<>();
     	try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
