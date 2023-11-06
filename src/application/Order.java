@@ -10,8 +10,6 @@ public class Order {
 	private String customer = "First Last";
 	private String dateOrdered = "Month Day Year";
 	private String dateFilled = "Month Day Year";
-	//Add ArrayList to Controller
-	//public ArrayList<Order> thneedOrders;
 
 // No-arg constructor
 public Order() {
@@ -26,7 +24,6 @@ public Order(int orderNumber, String size, String color, String customer, String
 	this.dateFilled = dateFilled;
 	
 }
-
 
 // access method
 public int getorderNumber() {
@@ -65,8 +62,6 @@ public ArrayList<Order> getOrders(){
 public void addOrder(Order order) {
 	thneedOrders.add(order);
 }
-
-
 
 }
 

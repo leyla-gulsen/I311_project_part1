@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,21 +21,6 @@ public class ThneedMainWindowController {
 	@FXML
 	private Button newCustButton;
 
+	public ArrayList<Order> thneedOrders;
+
 }
-
-
-//@FXML
-//private void handleNewOrder(ActionEvent event) {
-//	
-//}
-
-//@FXML
-//private void handleNewCustomer(ActionEvent event) {
-//	
-//}
-
-//@FXML
-//private void handleSaveFileButton(ActionEvent event) {
-//	
-//}
-
