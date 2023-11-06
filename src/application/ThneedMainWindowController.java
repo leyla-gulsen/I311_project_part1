@@ -2,9 +2,7 @@ package application;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.Button;
-
 import javafx.scene.control.TextField;
 
 public class ThneedMainWindowController {
@@ -23,19 +21,6 @@ public class ThneedMainWindowController {
 
 }
 
-//@FXML
-//private void handleSaveFileButton(ActionEvent event) {
-//	
-//}
-
-//@FXML
-//private void handleLoadFileButton(ActionEvent event) {
-//	
-//}
-
-//@FXML
-//private void handleLoadFileButton(ActionEvent event) {
-//}
 
 //@FXML
 //private void handleNewOrder(ActionEvent event) {
@@ -44,6 +29,11 @@ public class ThneedMainWindowController {
 
 //@FXML
 //private void handleNewCustomer(ActionEvent event) {
+//	
+//}
+
+//@FXML
+//private void handleSaveFileButton(ActionEvent event) {
 //	
 //}
 
