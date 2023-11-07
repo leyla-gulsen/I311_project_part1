@@ -18,7 +18,7 @@ import java.util.List;
 public class FileIO {
 
     // defining file were data will be stored
-    private static final String FILE_NAME = "thneed_data.txt"; // example file name
+    public static final String FILE_NAME = "thneed_data.txt"; // example file name
 
     // method for loading example customer data
     public static List<Customer> loadCustomers() {
@@ -56,7 +56,7 @@ public class FileIO {
     	try {
     		writer = new BufferedWriter(new FileWriter(FILE_NAME));
     		for (int i = 0; i< customers.size(); i++) {
-    			Customer customer = customers.get(i);
+    			Customer customer = customers.get(i); 
     			writer.write(customer.getName() + "," + customer.getAddress() + "," + customer.getPhone() + "\n");
     			System.out.println(customer.getName() + "," + customer.getAddress() + "," + customer.getPhone());
     		}
