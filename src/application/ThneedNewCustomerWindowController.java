@@ -33,10 +33,11 @@ public class ThneedNewCustomerWindowController {
 //		adding new customer to list
 		customers.add(newCustomer);
 //		writing changes to file with save customers function in FileIO class
-		FileIO.saveCustomers(customers);
+		FileIO.saveData(customers);
 	}
 	
 	// Event Listener on Button[#customerCancelButton].onAction
+//	Clearing New customer pop up fields
 	@FXML
 	public void customerCancelButtonClick(ActionEvent event) {
 		customerNameField.clear();
