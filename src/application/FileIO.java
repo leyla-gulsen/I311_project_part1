@@ -51,17 +51,17 @@ public class FileIO {
     }
     
 //    function to write new customers to file
-    public static void saveCustomers(List<Customer> customers) {
-    	try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) { 
-    		for (int i = 0; i< customers.size(); i++) {
-    			Customer customer = customers.get(i); 
-    			writer.write(customer.getName() + "," + customer.getAddress() + "," + customer.getPhone() + "\n");
-    			System.out.println(customer.getName() + "," + customer.getAddress() + "," + customer.getPhone());
-    		}
-    	} catch (IOException e) {
-    		e.printStackTrace();
-    	}
-    }
+//    public static void saveCustomers(List<Customer> customers) {
+//    	try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) { 
+//    		for (int i = 0; i< customers.size(); i++) {
+//    			Customer customer = customers.get(i); 
+//    			writer.write(customer.getName() + "," + customer.getAddress() + "," + customer.getPhone() + "\n");
+//    			System.out.println(customer.getName() + "," + customer.getAddress() + "," + customer.getPhone());
+//    		}
+//    	} catch (IOException e) {
+//    		e.printStackTrace();
+//    	}
+//    }
 
     // method for loading example order data
     public static List<Order> loadOrders() {
@@ -84,17 +84,18 @@ public class FileIO {
     }
 
 //    // method to save customer and order data to the file
-//    public static void saveData(List<Customer> customers, List<Order> orders) {
-//        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
-//            for (Customer customer : customers) {
-//                // write customer data into file
-//            }
-//
+    public static void saveData(List<Customer> customers) {
+    	try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) { 
+    		for (int i = 0; i< customers.size(); i++) {
+    			Customer customer = customers.get(i); 
+    			writer.write(customer.getName() + "," + customer.getAddress() + "," + customer.getPhone() + "\n");
+    			System.out.println(customer.getName() + "," + customer.getAddress() + "," + customer.getPhone());
+    		}
 //            for (Order order : orders) {
 //                // write order data into file
 //            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
