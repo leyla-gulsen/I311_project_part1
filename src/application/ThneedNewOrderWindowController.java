@@ -42,6 +42,8 @@ public class ThneedNewOrderWindowController {
 	@FXML
 	private RadioButton XLThneedButton;
 	@FXML
+	private ToggleGroup thneedSizeGroup;
+	@FXML
 	private RadioButton greenThneedButton;
 	@FXML
 	private RadioButton purpleThneedButton;

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="437.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ThneedNewOrderWindowController">
+<AnchorPane prefHeight="437.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ThneedNewOrderWindowController">
    <children>
       <Button fx:id="cancelOrderButton" layoutX="357.0" layoutY="359.0" mnemonicParsing="false" onAction="#cancelOrderButtonClick" prefHeight="33.0" prefWidth="123.0" text="Cancel Order" textFill="#eb419c" />
       <Label layoutX="223.0" layoutY="20.0" text="New Order" textFill="#eb419c">
@@ -58,10 +58,13 @@
       </RadioButton>
       <RadioButton fx:id="orangeThneedButton" layoutX="248.0" layoutY="134.0" mnemonicParsing="false" text="Orange" toggleGroup="$thneedColorGroup" />
       <RadioButton fx:id="yellowThneedButton" layoutX="316.0" layoutY="134.0" mnemonicParsing="false" text="Yellow" toggleGroup="$thneedColorGroup" />
-      <RadioButton fx:id="smallThneedButton" layoutX="198.0" layoutY="175.0" mnemonicParsing="false" text="Small" />
-      <RadioButton fx:id="mediumThneedButton" layoutX="263.0" layoutY="175.0" mnemonicParsing="false" text="Medium" />
-      <RadioButton fx:id="largeThneedButton" layoutX="340.0" layoutY="175.0" mnemonicParsing="false" text="Large" />
-      <RadioButton fx:id="XLThneedButton" layoutX="399.0" layoutY="175.0" mnemonicParsing="false" text="Extra Large" />
+      <RadioButton fx:id="smallThneedButton" layoutX="198.0" layoutY="175.0" mnemonicParsing="false" text="Small">
+         <toggleGroup>
+            <ToggleGroup fx:id="thneedSizeGroup" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="mediumThneedButton" layoutX="263.0" layoutY="175.0" mnemonicParsing="false" text="Medium" toggleGroup="$thneedSizeGroup" />
+      <RadioButton fx:id="largeThneedButton" layoutX="340.0" layoutY="175.0" mnemonicParsing="false" text="Large" toggleGroup="$thneedSizeGroup" />
+      <RadioButton fx:id="XLThneedButton" layoutX="399.0" layoutY="175.0" mnemonicParsing="false" text="Extra Large" toggleGroup="$thneedSizeGroup" />
       <RadioButton fx:id="greenThneedButton" layoutX="382.0" layoutY="134.0" mnemonicParsing="false" text="Green" toggleGroup="$thneedColorGroup" />
       <RadioButton fx:id="purpleThneedButton" layoutX="439.0" layoutY="134.0" mnemonicParsing="false" text="Purple" toggleGroup="$thneedColorGroup" />
    </children>
