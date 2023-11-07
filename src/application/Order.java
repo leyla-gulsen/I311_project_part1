@@ -1,67 +1,52 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class Order {
 	private static int nextOrderID = 1;
 	private int orderNumber;
-	private String size = "Small";
-	private String color = "Pink";
-	private String customer = "First Last";
-	private String dateOrdered = "Month Day Year";
-	private String dateFilled = "Month Day Year";
-
-// No-arg constructor
-public Order() {
-}
-
-public Order(int orderNumber, String size, String color, String customer, String dateOrdered, String dateFilled) {
-	this.orderNumber = nextOrderID ++;
-	this.size = size;
-	this.color = color;
-	this.customer = customer;
-	this.dateOrdered = dateOrdered;
-	this.dateFilled = dateFilled;
+	private Customer customer;
+	private Date dateOrdered;
+	private Date dateFilled;
+	private List<ThneedOrders> thneeds;
 	
-}
-
-// access method
-public int getorderNumber() {
-	return orderNumber;
-}
-
-//access method
-public String getSize() {
-	return size;
-}
-
-//access method
-public String getColor() {
-	return color;
-}
-
-//access method
-public String getCustomer() {
-	return customer;
-}
-
-//access method
-public String getDateOrdered() {
-	return dateOrdered;
-}
-
-//access method
-public String getDateFilled() {
-	return dateFilled;
-}
-
-public ArrayList<Order> getOrders(){
-	return thneedOrders;
-}
-
-public void addOrder(Order order) {
-	thneedOrders.add(order);
-}
-
+	// No-arg constructor
+	public Order(Customer customer) {
+		this.orderNumber = nextOrderID ++;
+		this.customer = customer;
+		this.thneeds = new ArrayList<>();
+		this.dateOrdered = new Date();
+		this.dateFilled = null;	
+	}
+	
+	//// access method
+	public int getorderNumber() {
+		return orderNumber;
+	}
+	
+	//access method
+	public Customer getCustomer() {
+		return customer;
+	}
+	
+	//access method
+	public Date getDateOrdered() {
+		return dateOrdered;
+	}
+	
+	//access method
+	public Date getDateFilled() {
+		return dateFilled;
+	}
+	
+	public List<ThneedOrders> getThneeds() {
+		return thneeds;
+	}
+	
+	public void addThneed(ThneedOrders thneed) {
+		this.thneeds.add(thneed);
+	}
 }
 
