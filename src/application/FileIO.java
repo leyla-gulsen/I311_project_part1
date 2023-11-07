@@ -30,7 +30,14 @@ public class FileIO {
             while ((line = reader.readLine()) != null) {
                 // read through the line and create customer objects
                 // add customer object to customer list
-            	// String[] parts = line.split()
+            	 String[] elements = line.split(",");
+            	 if (elements.length >=3) {
+            		 String name = elements[0];
+            		 String address = elements[1];
+            		 String phone = elements[2];
+            		 Customer customer = new Customer(name, address, phone);
+            		 customers.add(customer);
+            	 }
                 
             }
         } catch (FileNotFoundException e) {
@@ -41,6 +48,20 @@ public class FileIO {
         }
 
         return customers;
+    }
+    
+//    function to write new customers to file
+    public static void saveCustomers(List<Customer> customers) {
+    	BufferedWriter writer = null;
+    	try {
+    		writer = new BufferedWriter(new FileWriter(FILE_NAME));
+    		for (int i = 0; i< customers.size(); i++) {
+    			Customer customer = customers.get(i);
+    			writer.write(customer.getName() + "," + customer.getAddress() + "," + customer.getPhone() + "\n");
+    		}
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
     }
 
     // method for loading example order data
