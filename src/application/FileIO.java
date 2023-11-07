@@ -52,9 +52,7 @@ public class FileIO {
     
 //    function to write new customers to file
     public static void saveCustomers(List<Customer> customers) {
-    	BufferedWriter writer = null;
-    	try {
-    		writer = new BufferedWriter(new FileWriter(FILE_NAME));
+    	try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) { 
     		for (int i = 0; i< customers.size(); i++) {
     			Customer customer = customers.get(i); 
     			writer.write(customer.getName() + "," + customer.getAddress() + "," + customer.getPhone() + "\n");
@@ -85,18 +83,18 @@ public class FileIO {
         return orders;
     }
 
-    // method to save customer and order data to the file
-    public static void saveData(List<Customer> customers, List<Order> orders) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
-            for (Customer customer : customers) {
-                // write customer data into file
-            }
-
-            for (Order order : orders) {
-                // write order data into file
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    // method to save customer and order data to the file
+//    public static void saveData(List<Customer> customers, List<Order> orders) {
+//        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
+//            for (Customer customer : customers) {
+//                // write customer data into file
+//            }
+//
+//            for (Order order : orders) {
+//                // write order data into file
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
