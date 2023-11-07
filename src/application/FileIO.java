@@ -58,6 +58,7 @@ public class FileIO {
     		for (int i = 0; i< customers.size(); i++) {
     			Customer customer = customers.get(i);
     			writer.write(customer.getName() + "," + customer.getAddress() + "," + customer.getPhone() + "\n");
+    			System.out.println(customer.getName() + "," + customer.getAddress() + "," + customer.getPhone());
     		}
     	} catch (IOException e) {
     		e.printStackTrace();
