@@ -48,5 +48,15 @@ public class Order {
 	public void addThneed(ThneedOrders thneed) {
 		this.thneeds.add(thneed);
 	}
+
+	public void setDateOrdered(Date dateOrdered) {
+		this.dateOrdered = dateOrdered;
+		
+	}
+
+	public void setDateFilled(Date dateFilled) {
+		this.dateFilled = dateFilled;
+		
+	}
 }
 

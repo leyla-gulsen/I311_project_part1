@@ -71,18 +71,27 @@ public class FileIO {
     }
 
 //    // method to save customer and order data to the file
-    public static void saveData(List<Customer> customers) {
+    public static void saveData(List<Customer> customers, List<Order> orders) {
     	try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) { 
+  
     		for (int i = 0; i< customers.size(); i++) {
     			Customer customer = customers.get(i); 
     			writer.write(customer.getName() + "," + customer.getAddress() + "," + customer.getPhone() + "\n");
     			System.out.println(customer.getName() + "," + customer.getAddress() + "," + customer.getPhone());
+    			
+    			for (int j = 0; j < orders.size(); j++) {
+    				Order order = orders.get(i);
+    				writer.write(order.getorderNumber() + "," + customer.getCustomerId() + "," + order.getDateOrdered() + "," + order.getDateFilled() + "\n");
+    				List<ThneedOrders> thneeds = order.getThneeds();
+    				
+    				for (int k = 0; k < thneeds.size(); k++) {
+    					ThneedOrders thneed = thneeds.get(j);
+    					writer.write(thneed.getQuantity() + "," + thneed.getSize() + "," + thneed.getColor()+ "\n");
+    				}
+    			} 
     		}
-//            for (Order order : orders) {
-//                // write order data into file
-//            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    	}catch (IOException e) {
+    		e.printStackTrace();
+    	}
     }
 }
