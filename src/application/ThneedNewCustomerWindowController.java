@@ -33,7 +33,7 @@ public class ThneedNewCustomerWindowController {
 //		adding new customer to list
 		customers.add(newCustomer);
 //		writing changes to file with save customers function in FileIO class
-		FileIO.saveData(customers);
+		FileIO.saveData(customers, null);
 	}
 	
 	// Event Listener on Button[#customerCancelButton].onAction
