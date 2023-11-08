@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -131,15 +132,15 @@ public class ThneedMainWindowController {
 	
 	public void loadOrders() {
 		List<Order> orders = FileIO.loadOrders();
-		String orderList = "";
+//		String orderList = "";
 		for (int i = 0; i < orders.size(); i++) {
 			Order order = orders.get(i);
-			orderList += "Order Number: " + order.getorderNumber() + ", ";
-			orderList += "Customer: " + order.getCustomer().getName() + ", ";
-			orderList += "Order Date: " + formatDate(order.getDateOrdered()) + ", ";
-			orderList += "Date Filled: " + formatDate(order.getDateFilled()) + "\n";
+//			orderList += "Order Number: " + order.getorderNumber() + ", ";
+//			orderList += "Customer: " + order.getCustomer().getName() + ", ";
+//			orderList += "Order Date: " + formatDate(order.getDateOrdered()) + ", ";
+//			orderList += "Date Filled: " + formatDate(order.getDateFilled()) + "\n";
+//			orderListView.setItems((ObservableList) order);
 		}
-
 	}
 	
 	private static String formatDate(Date date) {
