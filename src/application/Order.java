@@ -26,6 +26,10 @@ public class Order {
 		return orderNumber;
 	}
 	
+	public void setOrderNumber(int orderNumber) {
+		this.orderNumber = orderNumber;
+	}
+	
 	//access method
 	public Customer getCustomer() {
 		return customer;
@@ -41,22 +45,20 @@ public class Order {
 		return dateFilled;
 	}
 	
-	public List<ThneedOrders> getThneeds() {
-		return thneeds;
-	}
-	
 	public void addThneed(ThneedOrders thneed) {
 		this.thneeds.add(thneed);
 	}
+	
+	public List<ThneedOrders> getThneeds() {
+		return thneeds;
+	}
 
 	public void setDateOrdered(Date dateOrdered) {
-		this.dateOrdered = dateOrdered;
-		
+		this.dateOrdered = dateOrdered;	
 	}
 
 	public void setDateFilled(Date dateFilled) {
 		this.dateFilled = dateFilled;
-		
 	}
 }
 

@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.event.ActionEvent;
@@ -33,7 +32,11 @@ public class ThneedNewCustomerWindowController {
 //		adding new customer to list
 		customers.add(newCustomer);
 //		writing changes to file with save customers function in FileIO class
-		FileIO.saveData(customers, null);
+		FileIO.saveCustomers(customers);
+		
+		customerNameField.clear();
+		customerAddressField.clear();
+		customerPhoneNumField.clear();
 	}
 	
 	// Event Listener on Button[#customerCancelButton].onAction
