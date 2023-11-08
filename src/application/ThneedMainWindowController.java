@@ -135,6 +135,7 @@ public class ThneedMainWindowController {
 			orderList += "Order Date: " + formatDate(order.getDateOrdered()) + ", ";
 			orderList += "Date Filled: " + formatDate(order.getDateFilled()) + "\n";
 		}
+		System.out.println(orders.size());
 		listField.setText(orderList);
 	}
 	
