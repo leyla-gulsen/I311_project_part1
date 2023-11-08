@@ -1,7 +1,10 @@
 package application;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +15,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 
 public class ThneedMainWindowController {
 	@FXML
@@ -31,6 +33,12 @@ public class ThneedMainWindowController {
 	private Button editDateButton;
 
 	public ArrayList<Order> thneedOrders;
+	
+	
+	@FXML
+	public void initialize() {
+		loadOrders();
+	}
 
 	// Event Listener on Button[#newOrderButton].onAction
 	@FXML
@@ -38,7 +46,7 @@ public class ThneedMainWindowController {
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/ThneedNewOrderWindow.fxml"));
 		AnchorPane dialogRoot;
-		//try except to ge the new window to show
+		//try except to get the new window to show
 		try {
 			dialogRoot = (AnchorPane) loader.load();
 			Scene dialogScene = new Scene(dialogRoot);
@@ -82,7 +90,7 @@ public class ThneedMainWindowController {
 	public void viewCustomerClick(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/ThneedViewCustomerWindow.fxml"));
 		AnchorPane dialogRoot;
-		//try except to ge the new window to show
+		//try except to get the new window to show
 		try {
 			dialogRoot = (AnchorPane) loader.load();
 			Scene dialogScene = new Scene(dialogRoot);
@@ -102,7 +110,7 @@ public class ThneedMainWindowController {
 	public void editDateClick(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/ThneedEditDateWindow.fxml"));
 		AnchorPane dialogRoot;
-		//try except to ge the new window to show
+		//try except to get the new window to show
 		try {
 			dialogRoot = (AnchorPane) loader.load();
 			Scene dialogScene = new Scene(dialogRoot);
@@ -115,5 +123,23 @@ public class ThneedMainWindowController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void loadOrders() {
+		List<Order> orders = FileIO.loadOrders();
+		String orderList = "";
+		for (int i = 0; i < orders.size(); i++) {
+			Order order = orders.get(i);
+			orderList += "Order Number: " + order.getorderNumber() + ", ";
+			orderList += "Customer: " + order.getCustomer().getName() + ", ";
+			orderList += "Order Date: " + formatDate(order.getDateOrdered()) + ", ";
+			orderList += "Date Filled: " + formatDate(order.getDateFilled()) + "\n";
+		}
+		listField.setText(orderList);
+	}
+	
+	private static String formatDate(Date date) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(date);
 	}
 }
