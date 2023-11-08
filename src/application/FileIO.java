@@ -90,7 +90,7 @@ public class FileIO {
     				}
     			} 
     		}
-    	}catch (IOException e) {
+    	} catch (IOException e) {
     		e.printStackTrace();
     	}
     }
