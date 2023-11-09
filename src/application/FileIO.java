@@ -22,11 +22,9 @@ public class FileIO {
 
     // defining file were data will be stored
     public static final String FILE_NAME = "thneed_data.txt"; // example file name
-
     // method for loading example customer data
     public static List<Customer> loadCustomers() {
         List<Customer> customers = new ArrayList<>();
-		
 		// using BufferedReader instead of PrintWriter because it is better for structured data
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;
@@ -60,7 +58,6 @@ public class FileIO {
     // method for loading example order data
     public static List<Order> loadOrders() {
         List<Order> orders = new ArrayList<>();
-
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -76,7 +73,6 @@ public class FileIO {
                     int quantity = Integer.parseInt(elements[4]);
                     String size = elements[5];
                     String color = elements[6];
-                    
                     
 //                    find the customer object with the given id
                     Customer customer = findCustomerId(customerId, loadCustomers());

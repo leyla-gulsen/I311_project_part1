@@ -38,6 +38,7 @@ public class ThneedMainWindowController {
 	@FXML
 	public void initialize() {
 		loadOrders();
+		System.out.println("Works here too");
 	}
 
 	// Event Listener on Button[#newOrderButton].onAction
@@ -126,6 +127,7 @@ public class ThneedMainWindowController {
 	}
 	
 	public void loadOrders() {
+		System.out.println("Working");
 		List<Order> orders = FileIO.loadOrders();
 		String orderList = "";
 		for (int i = 0; i < orders.size(); i++) {
@@ -134,8 +136,9 @@ public class ThneedMainWindowController {
 			orderList += "Customer: " + order.getCustomer().getName() + ", ";
 			orderList += "Order Date: " + formatDate(order.getDateOrdered()) + ", ";
 			orderList += "Date Filled: " + formatDate(order.getDateFilled()) + "\n";
+			System.out.println("1" + orderList);
 		}
-		listField.setText(orderList);
+		System.out.println(orderList);
 	}
 	
 	private static String formatDate(Date date) {
