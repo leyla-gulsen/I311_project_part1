@@ -73,9 +73,10 @@ public class FileIO {
             		int customerId = Integer.parseInt(elements[1]);
             		Date dateOrdered = parseDate(elements[2]);
                     Date dateFilled = parseDate(elements[3]);
-                    String size = elements[4];
-                    String color = elements[5];
-                    int quantity = Integer.parseInt(elements[6]);
+                    int quantity = Integer.parseInt(elements[4]);
+                    String size = elements[5];
+                    String color = elements[6];
+                    
                     
 //                    find the customer object with the given id
                     Customer customer = findCustomerId(customerId, loadCustomers());
