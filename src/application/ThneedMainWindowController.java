@@ -11,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -19,8 +19,8 @@ import javafx.stage.Stage;
 public class ThneedMainWindowController {
 	@FXML
 	private Button newOrderButton;
-	@FXML
-	private TextField listField;
+	//@FXML
+	//private TextField listField;
 	@FXML
 	private TextField currentField;
 	@FXML
@@ -31,8 +31,12 @@ public class ThneedMainWindowController {
 	private Button newCustButton;
 	@FXML
 	private Button editDateButton;
+	@FXML
+	private ListView<String> orderListView;
 
 	public ArrayList<Order> thneedOrders;
+	
+	
 	
 	
 	@FXML
@@ -138,7 +142,6 @@ public class ThneedMainWindowController {
 			orderList += "Date Filled: " + formatDate(order.getDateFilled()) + "\n";
 			System.out.println("1" + orderList);
 		}
-		System.out.println(orderList);
 	}
 	
 	private static String formatDate(Date date) {
