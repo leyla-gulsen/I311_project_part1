@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Customer {
     private static int nextCustomerId = 1;
-
     private int customerId;
 	private String name;
 	private String address;
 	private String phone;
     public ArrayList<Order> previousOrders;
+    public ArrayList<Order> currentOrders;
 
 	
 	public Customer(String name, String address, String phone) {
@@ -18,6 +18,7 @@ public class Customer {
 	     this.address = address;
 	     this.phone = phone;
 	     this.previousOrders = new ArrayList<>();
+	     this.currentOrders = new ArrayList<>();
 	}
 	
 	public int getCustomerId() {
@@ -48,12 +49,20 @@ public class Customer {
 		this.phone = phone;
 	}
 	
-	public ArrayList<Order> getOrders(){
+	public ArrayList<Order> getpreviousOrders(){
 		return previousOrders;
 	}
 	
 	public void addOrder(Order previousOrder) {
-		previousOrders.add(previousOrder);
+		this.previousOrders.add(previousOrder);
+	}
+	
+	public ArrayList<Order> getCurrentOrders() {
+		return currentOrders;
+	}
+	
+	public void addPastOrder(Order order) {
+		this.currentOrders.add(order);
 	}
 	
 	public String toString() {

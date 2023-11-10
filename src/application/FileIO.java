@@ -8,10 +8,11 @@ package application;
  */
 
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import application.Customer;
-import application.Order;
 
 /*
  * MAIN CLASS
@@ -20,151 +21,187 @@ import application.Order;
 public class FileIO {
 
     // defining file were data will be stored
-    private static final String FILE_NAME = "thneed_data.txt"; // example file name
-
-    // method to save the customer and order data to the file
-    public static void saveData(List<Customer> customers, List<Order> orders) {
-		
-		// using BufferedWriter instead of PrintWriter because it is better for structured data
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
-        	// loop through each customer
-            for (Customer customer : customers) {
-            	// write customer data to the file
-            	writer.write(customer.getCustomerId() + "," + customer.getName() + "," + customer.getAddress() + "," + customer.getPhone());
-            	writer.newLine();
-            	
-            	// loop through each order associated with the customer
-            	for (Order order : customer.getOrders()) {
-            		// write the order information to the file
-            		writer.write(order.getorderNumber() + "," + order.getSize() + "," + order.getColor() + "," + order.getCustomer() + "," + order.getDateOrdered() + "," + order.getDateFilled());
-                    writer.newLine();
-            	}
-            }
-            // loop through each solo order that are not with a customer
-            for (Order order : orders) {
-            	// write order to file
-            	writer.write(order.getorderNumber() + "," + order.getSize() + "," + order.getColor() + "," + order.getCustomer() + "," + order.getDateOrdered() + "," + order.getDateFilled());
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    public static final String FILE_NAME = "thneed_data.txt"; // example file name
     
     
-    //method to load customer data from the file
+    // method for loading example customer data
     public static List<Customer> loadCustomers() {
-    	List<Customer> customers = new ArrayList<>();
-    	try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
-    		String line;
-    		while ((line = reader.readLine()) != null) {
-    			// split line into an array of values
-    			String[] customerData = line.split(",");
-    			int customerId = Integer.parseInt(customerData[0]);
-    			String name = customerData[1];
-    			String address = customerData[2];
-                String phone = customerData[3];
-                
-                // create a new customer object and add to the list
-                Customer customer = new Customer(name, address, phone);
-                customer.setCustomerId(customerId);
-                customers.add(customer);
-    		}
+        List<Customer> customers = new ArrayList<>();
+		// using BufferedReader instead of PrintWriter because it is better for structured data
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
+            String line;
+//            read each line from file
+            while ((line = reader.readLine()) != null) {
+                // read through the line and create customer objects
+                // add customer object to customer list
+            	 String[] elements = line.split(",");
+//            	 getting data from array with indexes
+            	 if (elements.length == 3) {
+            		 String name = elements[0];
+            		 String address = elements[1];
+            		 String phone = elements[2];
+//            		 new customer object
+            		 Customer customer = new Customer(name, address, phone);
+//            		 adding to list
+            		 customers.add(customer);
+            	 }
+            }
         } catch (FileNotFoundException e) {
+            // case where the file doesn't exist
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return customers;
     }
+
     
-    
-    // method to load order data from file
+    // method for loading example order data
     public static List<Order> loadOrders() {
         List<Order> orders = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;
+//            Order currentOrder = null;
             while ((line = reader.readLine()) != null) {
-            	// split line into an array of values
-                String[] orderData = line.split(",");
-                int orderNumber = Integer.parseInt(orderData[0]);
-                String size = orderData[1];
-                String color = orderData[2];
-                String customer = orderData[3];
-                String dateOrdered = orderData[4];
-                String dateFilled = orderData[5];
-                
-                // create a new order object and add it to the list
-                Order order = new Order(orderNumber, size, color, customer, dateOrdered, dateFilled);
-                orders.add(order);
+                // add order object to order list
+            	String[] elements = line.split(",");
+//           	 getting data from array with indexes
+            	if (elements.length >= 4) {
+            		int orderNumber = Integer.parseInt(elements[0]);
+            		int customerId = Integer.parseInt(elements[1]);
+            		Date dateOrdered = parseDate(elements[2]);
+                    Date dateFilled = parseDate(elements[3]);
+                    
+                    Customer customer = findCustomerId(customerId, loadCustomers());
+                    if (customer != null) {
+                    	Order currentOrder = new Order(customer);
+                        currentOrder.setOrderNumber(orderNumber);
+                        currentOrder.setDateOrdered(dateOrdered);
+                        currentOrder.setDateFilled(dateFilled);
+                        orders.add(currentOrder);
+                    }
+                } else if (elements.length == 3 && orders.size() > 0) {
+                    int quantity = Integer.parseInt(elements[0]);
+                    String size = elements[1];
+                    String color = elements[2];        
+	                ThneedOrders thneed = new ThneedOrders(quantity, size, color);
+	                orders.get(orders.size() - 1).addThneed(thneed);
+
+                } else {
+                	continue;
+            	}
+
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            System.out.println("Loaded Orders: " + orders);
+
+
+	    } catch (FileNotFoundException e) {
+	        // case where the file doesn't exist
+	        e.printStackTrace();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
 
         return orders;
-    }
-}
 
-//    // method for loading example order data
-//    public static List<Order> loadOrders() {
-//        List<Order> orders = new ArrayList<>();
-//
-//        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
-//            String line;
-//            while ((line = reader.readLine()) != null) {
-//                // read through the line and create customer objects
-//                // add order object to order list
-//            }
-//        } catch (FileNotFoundException e) {
-//            // case where the file doesn't exist
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return orders;
-//    }
-//            while ((line = reader.readLine()) != null) {
-//                // read through the line and create customer objects
-//                // add customer object to customer list
-//            	
-//            	String[] customerData = line.split(","); // this is assuming data is comma separated, hard to tell as of right now
-//            	
-//            	int customerId = Integer.parseInt(customerData[0].substring(customerData[0].indexOf(": ") + 2));
-//                String name = customerData[1].substring(customerData[1].indexOf(": ") + 2);
-//                String address = customerData[2].substring(customerData[2].indexOf(": ") + 2);
-//                String phone = customerData[3].substring(customerData[3].indexOf(": ") + 2);
-//
-//                Customer customer = new Customer(name, address, phone);
-//                customer.setCustomerId(customerId);
-//                customers.add(customer);
-//                
-//            }
-//        } catch (FileNotFoundException e) {
-//            // case where the file doesn't exist
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return customers;
-//    }
-//    // method to save customer and order data to the file
+    }
+
+    
+//    function to find customer with a given ID
+    public static Customer findCustomerId(int customerId, List<Customer> customers) {
+//    	loop through list of customers
+    	for (int i = 0; i < customers.size(); i++) {
+//    		getting current customer object
+    		Customer customer = customers.get(i);
+    		if (customer.getCustomerId() == customerId) {
+//    			returning the customer if found
+    			return customer;
+    		}
+    	}
+    	return null;
+    }
+
+
+    public static void saveCustomers(List<Customer> customers) {
+    	try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
+//    		looping through list of customers
+    		for (int i = 0; i < customers.size(); i++) {
+    			Customer customer = customers.get(i);
+//    			outputting the elements for the customers to the file
+    			writer.write(customer.getName() + "," + customer.getAddress() + "," + customer.getPhone() + "\n");
+    		}
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
+    }
+    
+    public static void saveOrders(List<Order> orders) {
+    	try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
+//    		looping through list of orders
+    		for (int i = 0; i < orders.size(); i++) {
+    			Order order = orders.get(i);
+//    			writing out orders to file
+    			writer.write(order.getorderNumber() + "," + order.getCustomer().getCustomerId() + ","
+                        + formatDate(order.getDateOrdered()) + ","
+                        + formatDate(order.getDateFilled()) + ", ");
+    			
+//    			getting the elements from thneedOrders
+    			List<ThneedOrders> thneeds = order.getThneeds();
+//    			outputting the elements to file from based on specific order
+    			for (ThneedOrders thneed : thneeds) {
+    				writer.write(thneed.getQuantity() + "," + thneed.getSize() + "," + thneed.getColor() + "\n");
+    			}
+    		}
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
+    }
+
+	//    // method to save customer and order data to the file
 //    public static void saveData(List<Customer> customers, List<Order> orders) {
-//        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
-//            for (Customer customer : customers) {
-//                // write customer data into file
-//            }
-//
-//            for (Order order : orders) {
-//                // write order data into file
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+//    	try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) { 
+//  
+//    		for (int i = 0; i < customers.size(); i++) {
+//    			Customer customer = customers.get(i); 
+//    			writer.write(customer.getName() + "," + customer.getAddress() + "," + customer.getPhone() + "\n");
+//    			
+//    			List<Order> customerOrders = customer.getpreviousOrders();
+//    			for (int j = 0; j < customerOrders.size(); j++) {
+//    				Order order = customerOrders.get(j);
+//    				writer.write(order.getorderNumber() + "," + customer.getCustomerId() + ","
+//                            + formatDate(order.getDateOrdered()) + ","
+//                            + formatDate(order.getDateFilled()) + "\n");	
+//    				
+//    				List<ThneedOrders> thneeds = order.getThneeds();
+//    				for (int k = 0; k < thneeds.size(); k++) {
+//    					ThneedOrders thneed = thneeds.get(k);
+//    					writer.write(order.getorderNumber() + "," + customer.getCustomerId() + ","
+//                                + formatDate(order.getDateOrdered()) + ","
+//                                + formatDate(order.getDateFilled()) + ","
+//                                + thneed.getQuantity() + "," + thneed.getSize() + ","
+//                                + thneed.getColor() + "\n");
+//    				}
+//    			} 
+//    		}
+//    	} catch (IOException e) {
+//    		e.printStackTrace();
+//    	}
 //    }
-//}
+    
+//    formatting dates with given format
+	private static String formatDate(Date date) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(date);
+	}
+	
+//	parsing dates with given format
+	private static Date parseDate(String date) {
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+	    try {
+	        return dateFormat.parse(date);
+	    } catch (ParseException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
+}
