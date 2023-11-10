@@ -14,7 +14,7 @@ class CustomerTest {
     @BeforeEach
     void setUp() {
         customer = new Customer("Big Bird", "123 Sesame St", "555-1212");
-        customer.setCustomerId(1);
+        customer.setCustomerId(1); // due to ID issues of being 2? unsure so manually fixing in test
     }
 
     @Test
