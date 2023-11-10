@@ -1,3 +1,14 @@
+/*
+ * !!! IMPORTANT !!!
+ * 
+ * Leyla made these tests on her local PC that has JUnit 5 (Jupiter)
+ * This file does NOT pass due to issues with how FileIO.java runs. 
+ * FileIO.java runs, but in ways that are confusing that was hard to make tests for.
+ * Leyla will add screenshots to the documentation showing how the tests do NOT work in this file.
+ * 
+ */
+
+
 package application;
 
 import static org.junit.jupiter.api.Assertions.*;
