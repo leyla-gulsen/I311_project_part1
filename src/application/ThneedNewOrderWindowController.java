@@ -66,7 +66,6 @@ public class ThneedNewOrderWindowController {
 	public void cancelOrderButtonClick(ActionEvent event) {
 		orderQuantityField.clear();
 		orderCustomerNameField.clear();
-		orderDatePlacedField.clear();
 		orderDateFilledField.clear();
 		pinkThneedButton.setSelected(false);
 		orangeThneedButton.setSelected(false);
@@ -152,7 +151,6 @@ public class ThneedNewOrderWindowController {
 				orders.add(order);
 				
 //				saving to file
-				FileIO.saveCustomers(customers);
 				FileIO.saveOrders(orders);
 			}
 	
@@ -162,7 +160,6 @@ public class ThneedNewOrderWindowController {
 //		clearing fields when saved
 		orderQuantityField.clear();
 		orderCustomerNameField.clear();
-		orderDatePlacedField.clear();
 		orderDateFilledField.clear();
 		pinkThneedButton.setSelected(false);
 		orangeThneedButton.setSelected(false);

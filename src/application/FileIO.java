@@ -22,6 +22,8 @@ public class FileIO {
 
     // defining file were data will be stored
     public static final String FILE_NAME = "thneed_data.txt"; // example file name
+    
+    
     // method for loading example customer data
     public static List<Customer> loadCustomers() {
         List<Customer> customers = new ArrayList<>();
@@ -34,7 +36,7 @@ public class FileIO {
                 // add customer object to customer list
             	 String[] elements = line.split(",");
 //            	 getting data from array with indexes
-            	 if (elements.length >=3) {
+            	 if (elements.length == 3) {
             		 String name = elements[0];
             		 String address = elements[1];
             		 String phone = elements[2];
@@ -52,52 +54,58 @@ public class FileIO {
         }
         return customers;
     }
-    
-    
+
     
     // method for loading example order data
     public static List<Order> loadOrders() {
         List<Order> orders = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;
+//            Order currentOrder = null;
             while ((line = reader.readLine()) != null) {
-                // read through the line and create customer objects
                 // add order object to order list
             	String[] elements = line.split(",");
 //           	 getting data from array with indexes
-            	if (elements.length >= 7) {
+            	if (elements.length >= 4) {
             		int orderNumber = Integer.parseInt(elements[0]);
             		int customerId = Integer.parseInt(elements[1]);
             		Date dateOrdered = parseDate(elements[2]);
                     Date dateFilled = parseDate(elements[3]);
-                    int quantity = Integer.parseInt(elements[4]);
-                    String size = elements[5];
-                    String color = elements[6];
                     
-//                    find the customer object with the given id
                     Customer customer = findCustomerId(customerId, loadCustomers());
-                    if (customer != null ) {
-	                    Order order = new Order(customer);
-	                    order.setOrderNumber(orderNumber);
-	                    order.setDateOrdered(dateOrdered);
-	                    order.setDateFilled(dateFilled);
-	                    
-//	                    creating new thneedOrder object, adding thneedorder to order, adding order to order list
-	                    ThneedOrders thneed = new ThneedOrders(quantity, size, color);
-	                    order.addThneed(thneed);
-	                    orders.add(order);
+                    if (customer != null) {
+                    	Order currentOrder = new Order(customer);
+                        currentOrder.setOrderNumber(orderNumber);
+                        currentOrder.setDateOrdered(dateOrdered);
+                        currentOrder.setDateFilled(dateFilled);
+                        orders.add(currentOrder);
                     }
+                } else if (elements.length == 3 && orders.size() > 0) {
+                    int quantity = Integer.parseInt(elements[0]);
+                    String size = elements[1];
+                    String color = elements[2];        
+	                ThneedOrders thneed = new ThneedOrders(quantity, size, color);
+	                orders.get(orders.size() - 1).addThneed(thneed);
+
+                } else {
+                	continue;
             	}
+
             }
-        } catch (FileNotFoundException e) {
-            // case where the file doesn't exist
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            System.out.println("Loaded Orders: " + orders);
+
+
+	    } catch (FileNotFoundException e) {
+	        // case where the file doesn't exist
+	        e.printStackTrace();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
 
         return orders;
+
     }
+
     
 //    function to find customer with a given ID
     public static Customer findCustomerId(int customerId, List<Customer> customers) {
@@ -135,7 +143,7 @@ public class FileIO {
 //    			writing out orders to file
     			writer.write(order.getorderNumber() + "," + order.getCustomer().getCustomerId() + ","
                         + formatDate(order.getDateOrdered()) + ","
-                        + formatDate(order.getDateFilled()) + "\n");
+                        + formatDate(order.getDateFilled()) + ", ");
     			
 //    			getting the elements from thneedOrders
     			List<ThneedOrders> thneeds = order.getThneeds();

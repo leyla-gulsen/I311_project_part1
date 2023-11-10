@@ -6,21 +6,25 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ThneedMainWindowController {
 	@FXML
 	private Button newOrderButton;
-	//@FXML
-	//private TextField listField;
 	@FXML
 	private TextField currentField;
 	@FXML
@@ -39,12 +43,20 @@ public class ThneedMainWindowController {
 	
 	
 	
-	@FXML
-	public void initialize() {
-		loadOrders();
-		System.out.println("Works here too");
-	}
-
+    @FXML
+    public void initialize() {
+        loadOrdersOutput();
+        
+        
+        orderListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                String selectedOrderInfo = orderListView.getSelectionModel().getSelectedItem();
+                currentField.setText(selectedOrderInfo);
+            }
+        });
+    }
+	
 	// Event Listener on Button[#newOrderButton].onAction
 	@FXML
 	public void newOrderClick(ActionEvent event) {
@@ -129,19 +141,20 @@ public class ThneedMainWindowController {
 			e.printStackTrace();
 		}
 	}
+
 	
-	public void loadOrders() {
-		System.out.println("Working");
+	public void loadOrdersOutput() {
 		List<Order> orders = FileIO.loadOrders();
-		String orderList = "";
+		ObservableList<String> orderStrings = FXCollections.observableArrayList();
+		
 		for (int i = 0; i < orders.size(); i++) {
 			Order order = orders.get(i);
-			orderList += "Order Number: " + order.getorderNumber() + ", ";
-			orderList += "Customer: " + order.getCustomer().getName() + ", ";
-			orderList += "Order Date: " + formatDate(order.getDateOrdered()) + ", ";
-			orderList += "Date Filled: " + formatDate(order.getDateFilled()) + "\n";
-			System.out.println("1" + orderList);
+			String orderInfo = "Order Number: " + order.getorderNumber() + ", " + "Customer: " + order.getCustomer().getName() + ", " + "Order Date: " + formatDate(order.getDateOrdered()) + ", " + "Date Filled: " + formatDate(order.getDateFilled()) + "\n";
+			orderStrings.add(orderInfo);
 		}
+		System.out.println(orders.size());
+		orderListView.setItems(orderStrings);
+		System.out.println("loadOrdersOutput loads orders: " + orders);
 	}
 	
 	private static String formatDate(Date date) {

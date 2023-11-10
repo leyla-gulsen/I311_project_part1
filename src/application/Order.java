@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Order {
-	private static int nextOrderID = 1;
+	private static int nextOrderNumber = 1;
 	private int orderNumber;
 	private Customer customer;
 	private Date dateOrdered;
@@ -14,11 +14,12 @@ public class Order {
 	
 	// No-arg constructor
 	public Order(Customer customer) {
-		this.orderNumber = nextOrderID ++;
+		this.orderNumber = nextOrderNumber;
 		this.customer = customer;
 		this.thneeds = new ArrayList<>();
 		this.dateOrdered = new Date();
 		this.dateFilled = null;	
+		nextOrderNumber ++;
 	}
 	
 	//// access method
@@ -60,5 +61,6 @@ public class Order {
 	public void setDateFilled(Date dateFilled) {
 		this.dateFilled = dateFilled;
 	}
+
 }
 
