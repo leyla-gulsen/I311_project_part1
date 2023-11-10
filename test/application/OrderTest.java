@@ -52,12 +52,24 @@ class OrderTest {
         order.setDateOrdered(date);
         assertEquals(date, order.getDateOrdered());
     }
+    
+    @Test
+    void testSetDateOrderedWithNull() {
+    	assertThrows(IllegalArgumentException.class, () -> order.setDateOrdered(null));
+        assertNotNull(order.getDateOrdered());   
+    }
 
     @Test
     void testSetDateFilled() {
         Date date = new Date();
         order.setDateFilled(date);
         assertEquals(date, order.getDateFilled());
+    }
+    
+    @Test
+    void testSetDateFilledWithNull() {
+        assertThrows(NullPointerException.class, () -> order.setDateFilled(null));
+        assertNull(order.getDateFilled());
     }
 
     @Test
