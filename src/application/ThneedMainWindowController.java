@@ -45,7 +45,7 @@ public class ThneedMainWindowController {
     public void initialize() {
         loadOrdersOutput();
         
-        
+//        Event handler for when order item is selected
         orderListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -140,21 +140,20 @@ public class ThneedMainWindowController {
 		}
 	}
 
-	
+//	Method to display orders on main window
 	public void loadOrdersOutput() {
 		List<Order> orders = FileIO.loadOrders();
+//		Using observable list for list view
 		ObservableList<String> orderStrings = FXCollections.observableArrayList();
-		
+//		iterate through orders and set string for values
 		for (int i = 0; i < orders.size(); i++) {
 			Order order = orders.get(i);
 			String orderInfo = "Order Number: " + order.getorderNumber() + ", " + "Customer: " + order.getCustomer().getName() + ", " + "Order Date: " + formatDate(order.getDateOrdered()) + ", " + "Date Filled: " + formatDate(order.getDateFilled()) + "\n";
 			orderStrings.add(orderInfo);
 		}
-		System.out.println(orders.size());
 		orderListView.setItems(orderStrings);
-		System.out.println("loadOrdersOutput loads orders: " + orders);
 	}
-	
+//	Format dates
 	private static String formatDate(Date date) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         return dateFormat.format(date);

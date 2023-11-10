@@ -21,6 +21,7 @@ public class Customer {
 	     this.currentOrders = new ArrayList<>();
 	}
 	
+//	Get and set methods
 	public int getCustomerId() {
 		return customerId;
 	}
