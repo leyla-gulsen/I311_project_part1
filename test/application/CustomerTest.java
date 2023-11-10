@@ -1,3 +1,14 @@
+/*
+ * !!! IMPORTANT !!!
+ * 
+ * Leyla made these tests on her local PC that has JUnit 5 (Jupiter)
+ * This file DOES pass all green IF the boundaries in Customer.java are uncommented.
+ * The boundaries in Customer.java are commented out due to quality of life issues of the code. 
+ * Leyla will add screenshots to the documentation showing how the tests do work in this file.
+ * 
+ */
+
+
 package application;
 
 import static org.junit.jupiter.api.Assertions.*;
