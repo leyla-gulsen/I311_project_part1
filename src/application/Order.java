@@ -56,17 +56,17 @@ public class Order {
 
 	public void setDateOrdered(Date dateOrdered) {
 		// added boundary for if date is null
-	    if (dateOrdered == null) {
-	        throw new IllegalArgumentException("Date cannot be empty.");
-	    }
+//	    if (dateOrdered == null) {
+//	        throw new IllegalArgumentException("Date cannot be empty.");
+//	    }
 		this.dateOrdered = dateOrdered;	
 	}
 
 	public void setDateFilled(Date dateFilled) {
 		// added boundary for if date is null
-        if (dateFilled == null) {
-            throw new NullPointerException("Date cannot be empty.");
-        }
+//        if (dateFilled == null) {
+//            throw new NullPointerException("Date cannot be empty.");
+//        }
 		this.dateFilled = dateFilled;
 	}
 
