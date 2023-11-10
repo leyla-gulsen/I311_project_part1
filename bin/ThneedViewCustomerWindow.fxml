@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="501.0" prefWidth="486.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="application.ThneedViewCustomerWindowController">
+   <children>
+      <Label layoutX="62.0" layoutY="14.0" text="Customer Information" textFill="#eb419c">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="42.0" layoutY="96.0" text="Name:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="41.0" layoutY="137.0" text="Phone:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="41.0" layoutY="184.0" text="Address:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="237.0" text="Current Orders:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="41.0" layoutY="280.0" text="Past Orders:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="custNameLabel" layoutX="137.0" layoutY="96.0" text="Customer Name">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="custPhoneLabel" layoutX="137.0" layoutY="137.0" text="Phone Number">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="custAddressLabel" layoutX="137.0" layoutY="184.0" text="Customer Address">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="custPastOrderArea" layoutX="40.0" layoutY="313.0" prefHeight="148.0" prefWidth="429.0" />
+      <TextArea fx:id="custCurrentOrderArea" layoutX="176.0" layoutY="231.0" prefHeight="53.0" prefWidth="293.0" />
+   </children>
+</AnchorPane>

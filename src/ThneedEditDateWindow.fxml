@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="330.0" prefWidth="508.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="application.ThneedEditDateWindowController">
+   <children>
+      <Label layoutX="176.0" layoutY="14.0" text="Edit Date" textFill="#eb419c">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="39.0" layoutY="85.0" text="Order Info:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="39.0" layoutY="215.0" text="Change Date Filled:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="changeDateFilledField" layoutX="204.0" layoutY="216.0" prefHeight="25.0" prefWidth="271.0" />
+      <TextArea fx:id="changeDateOrderInfoField" layoutX="140.0" layoutY="85.0" prefHeight="112.0" prefWidth="335.0" />
+      <Button fx:id="updateDateButton" layoutX="116.0" layoutY="261.0" mnemonicParsing="false" onAction="#updateDateButtonClick" prefHeight="45.0" prefWidth="87.0" text="Update" textFill="#eb419c" />
+      <Button fx:id="updateDateCancelButton" layoutX="308.0" layoutY="261.0" mnemonicParsing="false" onAction="#updateDateCancelButtonClick" prefHeight="45.0" prefWidth="87.0" text="Cancel" textFill="#eb419c" />
+   </children>
+</AnchorPane>

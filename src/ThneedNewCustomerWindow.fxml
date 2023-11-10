@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="314.0" prefWidth="461.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="application.ThneedNewCustomerWindowController">
+   <children>
+      <Label layoutX="106.0" layoutY="14.0" text="New Customer" textFill="#eb419c">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="51.0" layoutY="90.0" text="Name:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="51.0" layoutY="138.0" text="Address:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="51.0" layoutY="183.0" text="Phone #:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="customerNameField" layoutX="144.0" layoutY="91.0" prefHeight="25.0" prefWidth="234.0" />
+      <TextField fx:id="customerAddressField" layoutX="144.0" layoutY="139.0" prefHeight="25.0" prefWidth="234.0" />
+      <TextField fx:id="customerPhoneNumField" layoutX="144.0" layoutY="184.0" prefHeight="25.0" prefWidth="234.0" />
+      <Button fx:id="customerSubmitButton" layoutX="119.0" layoutY="242.0" mnemonicParsing="false" onAction="#customerSubmitButtonClick" prefHeight="38.0" prefWidth="83.0" text="Submit" textFill="#eb419c" />
+      <Button fx:id="customerCancelButton" layoutX="261.0" layoutY="242.0" mnemonicParsing="false" onAction="#customerCancelButtonClick" prefHeight="38.0" prefWidth="83.0" text="Cancel" textFill="#eb419c" />
+   </children>
+</AnchorPane>

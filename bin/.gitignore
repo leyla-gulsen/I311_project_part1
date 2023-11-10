@@ -1,2 +1,6 @@
 /application/
 /ThneedMainWindow.fxml
+/ThneedEditDateWindow.fxml
+/ThneedNewCustomerWindow.fxml
+/ThneedNewOrderWindow.fxml
+/ThneedViewCustomerWindow.fxml
